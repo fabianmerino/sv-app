@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @layer lib { */
+.sidebar-mini {
+	@apply w-16;
+}
+
+.sidebar-full {
+	@apply w-56;
+}
+
+.sidebar-icon {
+	@apply relative flex items-center justify-start w-auto h-12 my-2 mx-2 p-4
+        hover:bg-gray-200 hover:text-aqua
+        bg-gray-200/25 dark:bg-gray-800 dark:text-aqua
+        dark:hover:bg-aqua dark:hover:text-white
+        rounded-3xl hover:rounded-xl transition-all duration-300 ease-linear
+        cursor-pointer;
+}
+
+.sidebar-icon-text {
+	@apply min-w-max left-14 text-white font-bold p-2 m-2;
+}
+
+.sidebar-mini .sidebar-icon-text {
+	@apply absolute w-auto transition-all duration-100 scale-0
+        origin-left bg-aqua dark:bg-gray-900 text-xs rounded-md shadow-md;
+}
+.sidebar-full .sidebar-icon:hover .sidebar-icon-text {
+	@apply text-aqua dark:text-white;
+}
+.sidebar-mini .sidebar-icon:hover .sidebar-icon-text {
+	@apply scale-100;
+}
+.sidebar-mini .sidebar-icon {
+	@apply h-12 w-12 justify-center p-0;
+}
+
+/* } */
