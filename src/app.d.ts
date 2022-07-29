@@ -8,4 +8,9 @@ declare namespace App {
 	// interface Platform {}
 	// interface Session {}
 	// interface Stuff {}
+	interface PrivateEnv {
+		APP_SECRET: string;
+		MONGODB_URI: string;
+		MONGODB_DB: string;
+	}
 }

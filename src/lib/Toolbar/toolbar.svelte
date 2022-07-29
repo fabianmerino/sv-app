@@ -1,14 +1,16 @@
 <script>
 	import Input from '$lib/base/input.svelte';
 	import MenuAlt from '$lib/Icons/menu-alt.svelte';
+	import LigthSwitch from '$lib/ligth-switch.svelte';
 	import { toggleSidebarMini } from '../../stores/views';
 	let value = '';
 </script>
 
-<section class="toolbar">
+<section class="toolbar dark:bg-gray-900">
 	<button class="p-2 text-aqua" on:click={toggleSidebarMini}>
 		<MenuAlt />
 	</button>
+	<LigthSwitch />
 	<Input bind:value placeholder="Buscar">
 		<!-- SVG search icon -->
 		<svg slot="icon" class="h-6 w-6 fill-current" viewBox="0 0 24 24">
@@ -26,7 +28,6 @@
 		justify-content: space-between;
 		padding: 0.5rem;
 		gap: 0.5rem;
-		background-color: #fafafa;
 		border-radius: 0.5rem;
 		box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 		min-width: 100%;
