@@ -11,6 +11,12 @@ const config = {
 		adapter: adapter(),
 		methodOverride: {
 			allowed: ['PATCH', 'DELETE']
+		},
+		alias: {
+			$utils: 'src/utils',
+			'$utils/*': 'src/utils/*',
+			$models: 'src/models',
+			'$models/*': 'src/models/*'
 		}
 	}
 };

@@ -9,28 +9,5 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"paths": {
-			"$lib": [
-				"src/lib"
-			],
-			"$lib/*": [
-				"src/lib/*"
-			],
-			"$utils": [
-				"src/utils"
-			],
-			"$utils/*": [
-				"src/utils/*"
-			],
-			"$types/*": [
-				"src/types/*"
-			],
-			// "$models": [
-			// 	"src/models"
-			// ],
-			"$models/*": [
-				"src/models/*"
-			],
-		}
 	}
 }
