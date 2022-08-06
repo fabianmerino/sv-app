@@ -1,5 +1,9 @@
 <script lang="ts">
-	import '../app.css';
+	import '../app.scss';
+	import { Lucia } from 'lucia-sveltekit/client';
+	import { session } from '$app/stores';
 </script>
 
-<slot />
+<Lucia {session}>
+	<slot />
+</Lucia>

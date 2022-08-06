@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Dashboard from '$lib/Icons/dashboard.svelte';
 	import Graphics from '$lib/Icons/graphics.svelte';
-	import Divider from '$lib/divider.svelte';
+	import Divider from '$lib/base/divider.svelte';
 	import SidebarIcon from './sidebar-icon.svelte';
 	import Reports from '$lib/Icons/reports.svelte';
 	import Companies from '$lib/Icons/companies.svelte';

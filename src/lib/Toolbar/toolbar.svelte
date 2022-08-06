@@ -1,24 +1,44 @@
 <script>
-	import Input from '$lib/base/input.svelte';
 	import MenuAlt from '$lib/Icons/menu-alt.svelte';
-	import LigthSwitch from '$lib/ligth-switch.svelte';
+	import ThemeChange from '$lib/base/theme-change.svelte';
 	import { toggleSidebarMini } from '../../stores/views';
+	import { signOut } from 'lucia-sveltekit/client';
+
+	const logout = async () => {
+		try {
+			await signOut();
+			window.location.href = '/login';
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	let value = '';
 </script>
 
-<section class="toolbar dark:bg-gray-900">
-	<button class="p-2 text-aqua" on:click={toggleSidebarMini}>
-		<MenuAlt />
-	</button>
-	<LigthSwitch />
-	<Input bind:value placeholder="Buscar">
-		<!-- SVG search icon -->
-		<svg slot="icon" class="h-6 w-6 fill-current" viewBox="0 0 24 24">
-			<path
-				d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-			/>
-		</svg>
-	</Input>
+<section class="toolbar dark:bg-gray-900 h-16">
+	<div class="flex items-center gap-2">
+		<button type="button" class="p-2 text-aqua" on:click={toggleSidebarMini}>
+			<MenuAlt />
+		</button>
+	</div>
+	<div class="flex items-center gap-2">
+		<ThemeChange class="text-primary" />
+		<div class="dropdown dropdown-end">
+			<!-- <label tabindex="0" for="dropdown" class="btn btn-ghost"> -->
+			<div tabindex="0" class="avatar placeholder m-1 btn btn-circle btn-ghost">
+				<div class="bg-neutral-focus text-neutral-content rounded-full w-8">
+					<span class="text-xs">FM</span>
+				</div>
+			</div>
+			<!-- </label> -->
+			<ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+				<li>
+					<div class="btn btn-ghost" on:click={logout}>Cerrar sesión</div>
+				</li>
+			</ul>
+		</div>
+	</div>
 </section>
 
 <style>

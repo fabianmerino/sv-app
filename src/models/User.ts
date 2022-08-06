@@ -20,7 +20,7 @@ declare interface IUserModel extends IUser, Document {
 	encryptPassword: (password: string) => string;
 }
 
-const UserSchema = new Schema<IUserModel>(
+export const UserSchema = new Schema<IUserModel>(
 	{
 		name: {
 			type: String,
@@ -77,4 +77,4 @@ UserSchema.methods = {
 	}
 };
 
-export default connection.model<IUserModel>('User', UserSchema, 'users');
+// export default connection.model<IUserModel>('User', UserSchema, 'users');

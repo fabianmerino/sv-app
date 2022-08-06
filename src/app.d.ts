@@ -6,7 +6,9 @@
 declare namespace App {
 	// interface Locals {}
 	// interface Platform {}
-	// interface Session {}
+	interface Session {
+		lucia: import('lucia-sveltekit/types').SvelteKitSession<{ name: string; email: string }>;
+	}
 	// interface Stuff {}
 	interface PrivateEnv {
 		APP_SECRET: string;

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { DateTime } from 'luxon';
-import type { GenericObject, NonEmptyString } from '$types/common';
+import type { GenericObject } from '$types/common';
 
 export default class CommonHelper {
 	/**

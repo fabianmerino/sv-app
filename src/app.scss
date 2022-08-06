@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer lib { */
+// @layer lib {
 .sidebar-mini {
 	@apply w-16;
 }
@@ -18,24 +18,24 @@
         dark:hover:bg-aqua dark:hover:text-white
         rounded-3xl hover:rounded-xl transition-all duration-300 ease-linear
         cursor-pointer;
+	.sidebar-full & {
+		&:hover .sidebar-icon-text {
+			@apply text-aqua dark:text-white;
+		}
+	}
+	.sidebar-mini & {
+		@apply h-12 w-12 justify-center p-0;
+		&:hover .sidebar-icon-text {
+			@apply scale-100;
+		}
+	}
 }
 
 .sidebar-icon-text {
 	@apply min-w-max left-14 text-white font-bold p-2 m-2;
-}
-
-.sidebar-mini .sidebar-icon-text {
-	@apply absolute w-auto transition-all duration-100 scale-0
+	.sidebar-mini & {
+		@apply absolute w-auto transition-all duration-100 scale-0
         origin-left bg-aqua dark:bg-gray-900 text-xs rounded-md shadow-md;
+	}
 }
-.sidebar-full .sidebar-icon:hover .sidebar-icon-text {
-	@apply text-aqua dark:text-white;
-}
-.sidebar-mini .sidebar-icon:hover .sidebar-icon-text {
-	@apply scale-100;
-}
-.sidebar-mini .sidebar-icon {
-	@apply h-12 w-12 justify-center p-0;
-}
-
-/* } */
+// }

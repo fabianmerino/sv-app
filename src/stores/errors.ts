@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import CommonHelper from '$utils/CommonHelper';
+import CommonHelper from '../utils/CommonHelper';
 
 export const errors = writable({});
 
