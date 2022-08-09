@@ -22,17 +22,17 @@
 		"@sveltejs/kit": "next",
 		"@types/jsonwebtoken": "^8.5.8",
 		"@types/luxon": "^3.0.0",
-		"@typescript-eslint/eslint-plugin": "^5.32.0",
-		"@typescript-eslint/parser": "^5.32.0",
-		"autoprefixer": "^10.4.7",
+		"@typescript-eslint/eslint-plugin": "^5.33.0",
+		"@typescript-eslint/parser": "^5.33.0",
+		"autoprefixer": "^10.4.8",
 		"daisyui": "^2.22.0",
 		"eslint": "^8.21.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
-		"lucia-sveltekit": "0.5.8",
+		"lucia-sveltekit": "0.5.9",
 		"luxon": "^3.0.1",
 		"mongoose": "^6.5.1",
-		"postcss": "^8.4.14",
+		"postcss": "^8.4.16",
 		"prettier": "^2.7.1",
 		"prettier-plugin-svelte": "^2.7.0",
 		"sass": "^1.54.3",
@@ -43,7 +43,7 @@
 		"theme-change": "^2.2.0",
 		"tslib": "^2.4.0",
 		"typescript": "^4.7.4",
-		"vite": "^3.0.4"
+		"vite": "^3.0.5"
 	},
 	"type": "module"
 }
