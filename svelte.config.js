@@ -8,9 +8,7 @@ const config = {
 	preprocess: preprocess({ postcss: true, sass: true }),
 
 	kit: {
-		adapter: vercel({
-			edge: true
-		}),
+		adapter: vercel(),
 		methodOverride: {
 			allowed: ['PATCH', 'DELETE']
 		},
