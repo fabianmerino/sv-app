@@ -9,7 +9,7 @@ const config = {
 
 	kit: {
 		adapter: vercel({
-			split: true
+			edge: true
 		}),
 		methodOverride: {
 			allowed: ['PATCH', 'DELETE']
