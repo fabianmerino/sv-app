@@ -2,7 +2,7 @@
 	import Dashboard from '$lib/Icons/dashboard.svelte';
 	import Graphics from '$lib/Icons/graphics.svelte';
 	import Divider from '$lib/base/divider.svelte';
-	import SidebarIcon from './sidebar-icon.svelte';
+	import SidebarIcon from './sidebar-item.svelte';
 	import Reports from '$lib/Icons/reports.svelte';
 	import Companies from '$lib/Icons/companies.svelte';
 	import BranchOffices from '$lib/Icons/branch-offices.svelte';
@@ -12,7 +12,7 @@
 	import Users from '$lib/Icons/users.svelte';
 	import LogoCulqui from '$lib/Icons/logo-culqui.svelte';
 	import LogoCulquiComplete from '$lib/Icons/logo-culqui-complete.svelte';
-	import { sidebarMini } from '../../stores/views';
+	import { sidebarMini } from 'stores/views';
 </script>
 
 <aside
@@ -30,11 +30,11 @@
 			{/if}
 		</a>
 	</div>
-	<nav class="flex flex-col pt-20 h-full w-full icon-list">
-		<SidebarIcon text="Gráficos">
+	<nav class="flex flex-col pt-20 h-full w-full">
+		<SidebarIcon text="Gráficos" to="/graphics">
 			<Graphics />
 		</SidebarIcon>
-		<SidebarIcon text="Dashboard">
+		<SidebarIcon text="Dashboard" to="/dashboard">
 			<Dashboard />
 		</SidebarIcon>
 		<SidebarIcon text="Reportes">

@@ -2,31 +2,25 @@
 	import type { Load } from '@sveltejs/kit';
 
 	export const load: Load = async ({ session }) => {
-		if (session.lucia) return;
+		if (session.lucia) return {};
 
-		return {
-			status: 302,
-			redirect: '/login'
-		};
+		return { status: 302, redirect: '/' };
 	};
 </script>
 
 <script lang="ts">
+	import { sidebarMini } from 'stores/views';
 	import Sidebar from '$lib/Sidebar/sidebar.svelte';
 	import Toolbar from '$lib/Toolbar/toolbar.svelte';
-	import { sidebarMini } from '../stores/views';
 </script>
 
 <svelte:head>
-	<title>Culqui</title>
+	<title>Gráficos | Culqui</title>
 </svelte:head>
 
 <div class="flex">
-	<Sidebar />
-	<main
-		class="flex justify-start ml-16 p-4 transition-all duration-500 ease-in-out w-full min-h-screen"
-		class:ml-56={!$sidebarMini}
-	>
+	<!-- <Sidebar /> -->
+	<!-- <main class="flex justify-start p-4 w-full">
 		<Toolbar />
-	</main>
+	</main> -->
 </div>

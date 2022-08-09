@@ -1,4 +1,11 @@
-<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg
+	width="26"
+	height="26"
+	viewBox="0 0 26 26"
+	fill="none"
+	class={$$props.class}
+	xmlns="http://www.w3.org/2000/svg"
+>
 	<path
 		d="M6.3335 9.01333L6.34683 8.99852"
 		stroke="currentColor"

@@ -3,7 +3,7 @@ import mongooseAdapter from '@lucia-sveltekit/adapter-mongoose';
 import mongoose from 'mongoose';
 import { dev } from '$app/env';
 import { env } from '$env/dynamic/private';
-import { RefreshToken, User } from '$models/Auth';
+import { RefreshToken, User } from 'models/Auth';
 
 mongoose.model('user', User);
 mongoose.model('refresh_token', RefreshToken);

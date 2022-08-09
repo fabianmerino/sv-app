@@ -2,12 +2,9 @@
 	import type { Load } from '@sveltejs/kit';
 
 	export const load: Load = async ({ session }) => {
-		if (!session.lucia) return;
+		if (!session.lucia) return {};
 
-		return {
-			status: 302,
-			redirect: '/'
-		};
+		return { status: 302, redirect: '/' };
 	};
 </script>
 
@@ -23,8 +20,8 @@
 	<title>Login</title>
 </svelte:head>
 
-<div class="flex flex-row items-center justify-around h-screen">
-	<div class="md:w-1/3 flex justify-center">
+<div class="flex flex-col lg:flex-row items-center justify-center min-h-screen">
+	<div class="lg:w-1/3 flex justify-center">
 		<div class="card w-100 max-w-md">
 			<form method="post" class="card-body gap-6">
 				<LogoCulquiComplete
@@ -68,8 +65,8 @@
 					<a href="/reset-password" class="link-primary"> Olvidé la contraseña </a>
 				</div>
 
-				<div class="card-actions w-full">
-					<button type="submit" class="btn btn-primary text-white w-full"> Entrar </button>
+				<div class="form-control">
+					<button type="submit" class="btn btn-primary"> Entrar </button>
 				</div>
 				<div class="card-actions items-center justify-center gap-4">
 					<span>¿Aún no tienes una cuenta?</span>
@@ -79,5 +76,5 @@
 			</form>
 		</div>
 	</div>
-	<LoginImage class="items-center justify-center w-full h-full py-4 hidden md:flex" />
+	<LoginImage class="items-center justify-center w-full h-full py-4 lg:flex" />
 </div>

@@ -1,7 +1,7 @@
 // Path: src\models\User.ts
 import crypto from 'crypto';
 import { Schema, Types, Document } from 'mongoose';
-import connection from '$lib/server/mongo';
+// import connection from '$lib/server/mongo';
 
 export declare interface IUser {
 	name: string;

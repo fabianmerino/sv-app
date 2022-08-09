@@ -13,10 +13,12 @@ const config = {
 			allowed: ['PATCH', 'DELETE']
 		},
 		alias: {
-			$utils: 'src/utils',
-			'$utils/*': 'src/utils/*',
-			$models: 'src/models',
-			'$models/*': 'src/models/*'
+			utils: 'src/utils',
+			'utils/*': 'src/utils/*',
+			models: 'src/models',
+			'models/*': 'src/models/*',
+			stores: 'src/stores',
+			'stores/*': 'src/stores/*'
 		}
 	}
 };

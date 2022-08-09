@@ -5,6 +5,7 @@
 	fill="none"
 	stroke="currentColor"
 	stroke-width="2"
+	class={$$props.class}
 	xmlns="http://www.w3.org/2000/svg"
 >
 	<path

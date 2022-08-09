@@ -3,6 +3,7 @@
 	height="26"
 	viewBox="0 0 21 26"
 	fill="none"
+	class={$$props.class}
 	stroke="currentColor"
 	stroke-width="2"
 	stroke-linecap="round"

@@ -32,10 +32,17 @@ module.exports = {
 			{
 				dark: {
 					...require('daisyui/src/colors/themes')['[data-theme=dark]'],
-					primary: '#1ABAD0'
+					primary: '#1ABAD0',
+					'dark-blue': '#364A5A'
 				}
 			},
-			'light',
+			{
+				light: {
+					...require('daisyui/src/colors/themes')['[data-theme=light]'],
+					primary: '#1ABAD0',
+					'base-content': '#364A5A'
+				}
+			},
 			'cupcake',
 			'bumblebee',
 			'emerald',

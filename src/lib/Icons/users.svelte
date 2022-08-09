@@ -2,6 +2,7 @@
 	width="23"
 	height="26"
 	viewBox="0 0 23 26"
+	class={$$props.class}
 	fill="none"
 	stroke="currentColor"
 	stroke-width="2"
