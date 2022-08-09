@@ -2,7 +2,6 @@
 	import ThemeChange from '$lib/base/theme-change.svelte';
 	import { toggleSidebarMini } from 'stores/views';
 	import { signOut } from 'lucia-sveltekit/client';
-	import { goto } from '$app/navigation';
 
 	const logout = async () => {
 		try {

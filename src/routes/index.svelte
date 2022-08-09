@@ -9,9 +9,9 @@
 </script>
 
 <script lang="ts">
-	import { sidebarMini } from 'stores/views';
-	import Sidebar from '$lib/Sidebar/sidebar.svelte';
-	import Toolbar from '$lib/Toolbar/toolbar.svelte';
+	// import { sidebarMini } from 'stores/views';
+	// import Sidebar from '$lib/Sidebar/sidebar.svelte';
+	// import Toolbar from '$lib/Toolbar/toolbar.svelte';
 </script>
 
 <svelte:head>

@@ -1,6 +1,6 @@
-import { Schema, Types } from 'mongoose';
+import mongoose from 'mongoose';
 
-export const User = new Schema(
+export const User = new mongoose.Schema(
 	{
 		_id: String,
 		identifier_token: {
@@ -30,11 +30,11 @@ export const User = new Schema(
 	{ _id: false, timestamps: true }
 );
 
-export const RefreshToken = new Schema({
+export const RefreshToken = new mongoose.Schema({
 	refresh_token: String,
 	user_id: String,
 	user: {
-		type: Types.ObjectId,
+		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
 	}
 });
