@@ -6,13 +6,11 @@
 declare namespace App {
 	// interface Locals {}
 	// interface Platform {}
-	interface Session {
-		lucia: import('lucia-sveltekit/types').SvelteKitSession<{ name: string; email: string }>;
-	}
-	// interface Stuff {}
 	interface PrivateEnv {
 		APP_SECRET: string;
-		MONGODB_URI: string;
-		MONGODB_DB: string;
+	}
+	interface PublicEnv {
+		PUBLIC_MONGODB_URI: string;
+		PUBLIC_MONGODB_DB: string;
 	}
 }
