@@ -1,13 +1,14 @@
 import { auth } from '$lib/server/lucia';
-import type { RequestHandler } from '@sveltejs/kit';
+import type { Action } from '@sveltejs/kit';
 import type { Error } from 'lucia-sveltekit';
 
-export const POST: RequestHandler = async ({ request }) => {
+export const POST: Action = async ({ request }) => {
 	const body = await request.formData();
 	const name = body.get('name') as string;
 	const email = body.get('email') as string;
 	const password = body.get('password') as string;
 	if (!name || !email || !password) {
+		throw new Error("@migration task: Migrate this return statement (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292699)");
 		return {
 			status: 400
 		};
@@ -23,6 +24,7 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		console.log(createUser);
 
+		throw new Error("@migration task: Migrate this return statement (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292699)");
 		return {
 			status: 200,
 			headers: {
@@ -35,6 +37,7 @@ export const POST: RequestHandler = async ({ request }) => {
 			error.message === 'AUTH_DUPLICATE_IDENTIFIER_TOKEN' ||
 			error.message === 'AUTH_DUPLICATE_USER_DATA'
 		) {
+			throw new Error("@migration task: Migrate this return statement (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292699)");
 			return {
 				status: 400,
 				body: {
@@ -42,6 +45,7 @@ export const POST: RequestHandler = async ({ request }) => {
 				}
 			};
 		}
+		throw new Error("@migration task: Migrate this return statement (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292699)");
 		return {
 			status: 500,
 			body: {

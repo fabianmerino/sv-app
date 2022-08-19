@@ -1,14 +1,6 @@
-<script lang="ts" context="module">
-	import type { Load } from '@sveltejs/kit';
-
-	export const load: Load = async ({ session }) => {
-		if (!session.lucia) return {};
-
-		return { status: 302, redirect: '/' };
-	};
-</script>
-
 <script lang="ts">
+	throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+
 	import ThemeChange from '$lib/base/theme-change.svelte';
 	import LoginImage from '$lib/Images/login.svelte';
 	import LogoCulquiComplete from '$lib/Icons/logo-culqui-complete.svelte';
