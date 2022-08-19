@@ -8,6 +8,7 @@ declare namespace App {
 	// interface Platform {}
 	interface PrivateEnv {
 		APP_SECRET: string;
+		MONGODB_URI: string;
 	}
 	interface PublicEnv {
 		PUBLIC_MONGODB_URI: string;

@@ -48,7 +48,7 @@
 				/>
 			</div>
 			<div class="card-actions">
-				<button type="submit" class="btn btn-primary w-full max-w-xs" disabled={!!error}>
+				<button type="submit" class="btn btn-primary w-full max-w-xs" disabled={!!errors}>
 					Ingresar
 				</button>
 			</div>
