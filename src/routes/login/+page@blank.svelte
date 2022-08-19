@@ -1,11 +1,9 @@
 <script lang="ts">
-	throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
-
 	import ThemeChange from '$lib/base/theme-change.svelte';
 	import LoginImage from '$lib/Images/login.svelte';
 	import LogoCulquiComplete from '$lib/Icons/logo-culqui-complete.svelte';
 
-	export let error = '';
+	export let errors: { 'message': string };
 </script>
 
 <svelte:head>
@@ -15,9 +13,9 @@
 <div class="flex flex-col lg:flex-row items-center justify-center min-h-screen">
 	<div class="lg:w-1/3 flex justify-center">
 		<div class="card w-100 max-w-md">
-			<form method="post" class="card-body gap-6">
+			<form method="post" class="card-body gap-4">
 				<LogoCulquiComplete
-					class="flex justify-center w-full h-max text-dark-blue dark:text-aqua"
+					class="flex justify-center w-full h-max py-4 text-dark-blue dark:text-aqua"
 				/>
 				<div class="form-control w-full">
 					<label for="email" class="label">
@@ -29,9 +27,9 @@
 						placeholder="Ingrese su email"
 						class="input input-bordered w-full"
 					/>
-					{#if error}
-						<label for="password" class="label">
-							<span class="label-text text-error">{error}</span>
+					{#if errors}
+						<label for="email" class="label">
+							<span class="label-text text-error">{errors.message}</span>
 						</label>
 					{/if}
 				</div>

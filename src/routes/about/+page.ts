@@ -3,5 +3,5 @@ import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ parent }) => {
 	const { lucia } = await parent();
-	if (lucia) throw redirect(302, '/');
+	if (!lucia) throw redirect(302, '/login');
 };

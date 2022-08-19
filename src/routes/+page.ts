@@ -1,8 +1,8 @@
+export const prerender = true;
 import { redirect } from '@sveltejs/kit';
-import type { PageLoad } from '@sveltejs/kit';
+import type { PageLoad } from './$types';
 
-export const load: PageLoad = async ({ session }) => {
-	if (session.lucia) return {};
-
-	throw redirect(302, '/login');
+export const load: PageLoad = async ({ parent }) => {
+	const { lucia } = await parent();
+	if (!lucia) throw redirect(302, '/login');
 };

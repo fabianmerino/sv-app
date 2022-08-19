@@ -8,7 +8,7 @@ import { RefreshToken, User } from 'models/Auth';
 mongoose.model('user', User);
 mongoose.model('refresh_token', RefreshToken);
 
-export const auth = lucia<{ name: string; email: string }>({
+export const auth = lucia({
 	adapter: mongooseAdapter(mongoose, MONGODB_URI),
 	secret: APP_SECRET,
 	env: dev ? 'DEV' : 'PROD'

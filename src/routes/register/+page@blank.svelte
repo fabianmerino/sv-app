@@ -1,10 +1,9 @@
 <script lang="ts">
-	throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
 
 	export const token: string | null = null;
 	export const user: any | null = null;
 
-	export let error = '';
+	export let errors: { [key: string]: string };
 </script>
 
 <svelte:head>
