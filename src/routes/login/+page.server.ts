@@ -39,6 +39,7 @@ export const POST: Action = async ({ request, setHeaders }) => {
 				}
 			};
 		}
+		console.error(e);
 		return {
 			status: 500,
 			errors: {
