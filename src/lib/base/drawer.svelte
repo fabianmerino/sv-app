@@ -40,7 +40,7 @@
 				</a>
 			</li>
 
-			<SidebarItem text="Gráficos" to="/graphics" class="mt-20">
+			<SidebarItem text="Gráficos" to="/" class="mt-20">
 				<Graphics class="w-6" />
 			</SidebarItem>
 
