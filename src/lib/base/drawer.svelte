@@ -25,9 +25,9 @@
 	<aside class="drawer-side shadow-lg">
 		<label for="sidebar" class="drawer-overlay" />
 		<ul
-			class="menu overflow-y-auto p-2 w-20 overflow-x-visible gap-4 bg-base-100 text-base-content transition-all duration-300 ease-linear {$sidebarMini
-				? 'items-center'
-				: 'w-60'}"
+			class="menu overflow-y-auto p-2 w-60 lg:w-20 overflow-x-visible gap-4 bg-base-100 text-base-content transition-all duration-300 ease-linear {$sidebarMini
+				? 'lg:items-center'
+				: 'lg:w-60'}"
 		>
 			<!--  -->
 			<li class="my-12">
