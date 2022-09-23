@@ -1,8 +1,8 @@
 <script lang="ts">
 	import '../app.scss';
-	import { Lucia } from 'lucia-sveltekit/client';
+	import { handleSilentRefresh } from 'lucia-sveltekit/client';
+
+	handleSilentRefresh();
 </script>
 
-<Lucia on:error={(e) => console.error(e)}>
-	<slot />
-</Lucia>
+<slot />

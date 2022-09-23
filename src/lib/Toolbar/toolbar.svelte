@@ -2,19 +2,18 @@
 	import ThemeChange from '$lib/base/theme-change.svelte';
 	import { toggleSidebarMini } from 'stores/views';
 	import { signOut } from 'lucia-sveltekit/client';
+	import { getSession } from 'lucia-sveltekit/client';
+
+	const session = getSession();
 
 	const logout = async () => {
 		try {
-			await signOut().then(() => console.log('Sesión cerrada'));
+			console.log($session);
+			await signOut('/login');
 		} catch (err) {
-			console.error(err);
-		} finally {
-			// await goto('/login');
-			window.location.replace('/login');
+			console.log(err);
 		}
 	};
-
-	// let value = '';
 </script>
 
 <div class="flex justify-center p-4 w-full">
@@ -92,7 +91,7 @@
 						</a>
 					</li>
 					<li><a href="/settings">Settings</a></li>
-					<li><div on:click|preventDefault={logout}>Logout</div></li>
+					<li><button on:click={logout}>Logout</button></li>
 				</ul>
 			</div>
 		</div>

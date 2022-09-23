@@ -5,13 +5,22 @@
 // and what to do when importing types
 declare namespace App {
 	// interface Locals {}
+	// interface PageData {}
 	// interface Platform {}
-	interface PrivateEnv {
-		APP_SECRET: string;
-		MONGODB_URI: string;
-	}
-	interface PublicEnv {
-		PUBLIC_MONGODB_URI: string;
-		PUBLIC_MONGODB_DB: string;
+}
+
+declare module '$env/static/private' {
+	export const APP_SECRET: string;
+	export const MONGODB_URI: string;
+}
+
+/// <reference types="lucia-sveltekit" />
+
+declare namespace Lucia {
+	interface UserData {
+		name: string;
+		email: string;
+		createDate?: Date;
+		updateDate?: Date;
 	}
 }

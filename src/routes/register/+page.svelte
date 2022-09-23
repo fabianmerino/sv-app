@@ -1,5 +1,4 @@
 <script lang="ts">
-
 	export const token: string | null = null;
 	export const user: any | null = null;
 
@@ -12,7 +11,7 @@
 
 <div class="flex flex-col items-center justify-center h-screen">
 	<div class="card w-96 bg-base-100 shadow-xl">
-		<form method="post" class="card-body gap-4">
+		<form method="post" action="/login" class="card-body gap-4">
 			<h2 class="card-title">Registrar nuevo usuario</h2>
 			<div class="form-control w-full max-w-xs">
 				<label for="email" class="label">

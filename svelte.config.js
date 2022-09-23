@@ -9,9 +9,6 @@ const config = {
 
 	kit: {
 		adapter: vercel(),
-		methodOverride: {
-			allowed: ['PATCH', 'DELETE']
-		},
 		alias: {
 			utils: 'src/utils',
 			'utils/*': 'src/utils/*',
