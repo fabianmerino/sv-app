@@ -1,9 +1,8 @@
 import { auth } from '$lib/server/lucia';
 import { invalid, redirect, type Actions } from '@sveltejs/kit';
-import { setCookie } from 'lucia-sveltekit';
 
 export const actions: Actions = {
-	default: async ({ request, cookies }) => {
+	default: async ({ request, locals }) => {
 		const form = await request.formData();
 		const email = form.get('email');
 		const password = form.get('password');
@@ -12,14 +11,14 @@ export const actions: Actions = {
 			!password ||
 			typeof email !== 'string' ||
 			typeof password !== 'string' ||
-			!email.includes('@') ||
-			!email.includes('.')
+			!validateEmail(email)
 		) {
 			return invalid(400, { message: 'Invalid email or password' });
 		}
 		try {
-			const authenticateUser = await auth.authenticateUser('email', email, password);
-			setCookie(cookies, ...authenticateUser.cookies);
+			const user = await auth.authenticateUser('email', email, password);
+			const session = await auth.createSession(user.userId);
+			locals.setSession(session);
 		} catch (e) {
 			const err = e as Error;
 			if (
@@ -34,3 +33,12 @@ export const actions: Actions = {
 		throw redirect(307, '/login');
 	}
 };
+
+// Regex to validate email addresses
+const EMAIL_REGEX = new RegExp(
+	'^(([^<>()[\\]\\.,;:\\s@"]+(\\.[^<>()[\\]\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$'
+);
+
+function validateEmail(email: string) {
+	return EMAIL_REGEX.test(email);
+}

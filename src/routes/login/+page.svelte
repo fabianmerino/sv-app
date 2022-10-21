@@ -17,21 +17,13 @@
 			<form
 				method="post"
 				class="card-body gap-4"
-				use:enhance={({ data, cancel }) => {
-					form = {};
-					const email = data.get('email')?.toString() || '';
-					const password = data.get('password')?.toString() || '';
-					if (!email || !password) {
-						form.message = 'Invalid input';
-						cancel();
-					}
-					return async ({ result }) => {
+				use:enhance={() => {
+					return async ({ result, update }) => {
 						if (result.type === 'redirect') {
 							window.location.href = result.location; // invalidateAll() + goto() will not work
+							return;
 						}
-						if (result.type === 'invalid') {
-							applyAction(result);
-						}
+						applyAction(result);
 					};
 				}}
 			>
@@ -48,11 +40,9 @@
 						placeholder="Ingrese su email"
 						class="input input-bordered w-full"
 					/>
-					{#if form}
-						<label for="email" class="label">
-							<span class="label-text text-error">{form.message}</span>
-						</label>
-					{/if}
+					<label for="email" class="label">
+						<span class="label-text text-error">{form?.message || ''}</span>
+					</label>
 				</div>
 				<div class="form-control w-full">
 					<label for="password" class="label">

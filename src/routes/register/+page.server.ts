@@ -1,9 +1,8 @@
 import { auth } from '$lib/server/lucia';
 import { invalid, redirect, type Actions } from '@sveltejs/kit';
-import { setCookie } from 'lucia-sveltekit';
 
 export const actions: Actions = {
-	default: async ({ request, cookies }) => {
+	default: async ({ request, locals }) => {
 		const body = await request.formData();
 		const name = body.get('name') as string;
 		const email = body.get('email') as string;
@@ -12,14 +11,16 @@ export const actions: Actions = {
 			return { errors: { message: 'Invalid name, email or password' } };
 		}
 		try {
-			const createdUser = await auth.createUser('email', email, {
+			const user = await auth.createUser('email', email, {
 				password,
-				user_data: {
+				attributes: {
 					name,
-					email
+					email,
+					username: email
 				}
 			});
-			setCookie(cookies, ...createdUser.cookies);
+			const session = await auth.createSession(user.userId);
+			locals.setSession(session);
 		} catch (e) {
 			const error = e as Error;
 			if (

@@ -1,0 +1,98 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model User {
+  id             String    @id @default(cuid())
+  username       String    @unique
+  providerId     String    @unique @map("provider_id")
+  hashedPassword String?   @map("hashed_password")
+  organizationId Int?      @map("organization_id")
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime? @updatedAt
+
+  session      Session[]
+  organization Organization? @relation(fields: [organizationId], references: [id])
+
+  @@map("users")
+}
+
+model Session {
+  id          String @id @unique
+  userId      String @map("user_id")
+  expires     BigInt
+  idleExpires BigInt @map("idle_expires")
+
+  user User @relation(references: [id], fields: [userId], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+model Organization {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  address   String?
+  phone     String?
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  users    User[]
+  branches BranchOffice[]
+
+  @@map("organizations")
+}
+
+model BranchOffice {
+  id             Int       @id @default(autoincrement())
+  name           String    @unique
+  organizationId Int       @map("organization_id")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime? @updatedAt @map("updated_at")
+
+  zones        Zone[]
+  organization Organization @relation(fields: [organizationId], references: [id])
+
+  @@map("branches")
+}
+
+model Zone {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  branchId  Int       @map("branch_id")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  branch  BranchOffice @relation(fields: [branchId], references: [id])
+  devices Device[]
+
+  @@map("zones")
+}
+
+model Device {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  zoneId    Int       @map("zone_id")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  zone Zone @relation(fields: [zoneId], references: [id])
+
+  @@map("devices")
+}
+
+model Energy {
+  id        BigInt   @id @default(autoincrement()) @db.BigInt
+  timestamp DateTime
+  metadata  Json
+  data      Json
+
+  @@map("energy")
+}

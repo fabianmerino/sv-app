@@ -1,15 +1,20 @@
 import lucia from 'lucia-sveltekit';
-import mongooseAdapter from '@lucia-sveltekit/adapter-mongoose';
-import mongoose from 'mongoose';
+import prisma from '@lucia-sveltekit/adapter-prisma';
+import { PrismaClient } from '@prisma/client';
 import { dev } from '$app/environment';
-import { APP_SECRET, MONGODB_URI } from '$env/static/private';
-import { RefreshToken, User } from 'models/Auth';
 
-mongoose.model('user', User);
-mongoose.model('refresh_token', RefreshToken);
+const client = new PrismaClient();
 
 export const auth = lucia({
-	adapter: mongooseAdapter(mongoose, MONGODB_URI),
-	secret: APP_SECRET,
-	env: dev ? 'DEV' : 'PROD'
+	adapter: prisma(client),
+	env: dev ? 'DEV' : 'PROD',
+	transformUserData: (userData) => {
+        return {
+            userId: userData.id,
+            username: userData.username,
+        };
+    },
+
 });
+
+export type Auth = typeof auth;

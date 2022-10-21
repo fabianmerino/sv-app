@@ -4,7 +4,11 @@
 // for information about these interfaces
 // and what to do when importing types
 declare namespace App {
-	// interface Locals {}
+	interface Locals {
+		getSession: import('lucia-sveltekit/types').GetSession;
+		setSession: import('lucia-sveltekit/types').SetSession;
+		clearSession: import('lucia-sveltekit/types').ClearSession;
+	}
 	// interface PageData {}
 	// interface Platform {}
 }
@@ -15,12 +19,13 @@ declare module '$env/static/private' {
 }
 
 /// <reference types="lucia-sveltekit" />
-
 declare namespace Lucia {
-	interface UserData {
+	type Auth = import('$lib/server/lucia').Auth;
+	type UserAttributes = {
 		name: string;
-		email: string;
-		createDate?: Date;
-		updateDate?: Date;
-	}
+		email?: string;
+		username: string;
+		createdAt?: Date;
+		updatedAt?: Date;
+	};
 }
