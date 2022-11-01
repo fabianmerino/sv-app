@@ -1,8 +1,11 @@
 <script lang="ts">
-	import { handleSilentRefresh } from 'lucia-sveltekit/client';
+	import { page } from '$app/stores';
 	import Drawer from '$lib/base/drawer.svelte';
+	import { handleSession } from '@lucia-auth/sveltekit/client';
 
-	handleSilentRefresh();
+	handleSession(page, () => {
+		console.log('Session change');
+	});
 </script>
 
 <Drawer>

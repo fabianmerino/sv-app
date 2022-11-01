@@ -1,15 +1,16 @@
 <script>
 	import ThemeChange from '$lib/base/theme-change.svelte';
 	import { toggleSidebarMini } from 'stores/views';
-	import { signOut } from 'lucia-sveltekit/client';
-	import { getSession } from 'lucia-sveltekit/client';
+	import { signOut, getUser } from '@lucia-auth/sveltekit/client';
+	import { invalidateAll } from '$app/navigation';
 
-	const session = getSession();
+	const user = getUser();
 
 	const logout = async () => {
 		try {
-			console.log($session);
-			await signOut('/login');
+			console.log($user);
+			await signOut();
+			invalidateAll();
 		} catch (err) {
 			console.log(err);
 		}
@@ -19,7 +20,7 @@
 <div class="flex justify-center p-4 w-full">
 	<div class="navbar bg-base-100 shadow-lg h-16 gap-2 rounded-box">
 		<div class="flex-none">
-			<label
+			<button
 				for="sidebar"
 				class="btn btn-square btn-ghost drawer-button"
 				on:click={toggleSidebarMini}
@@ -37,7 +38,7 @@
 						d="M4 6h16M4 12h16M4 18h16"
 					/>
 				</svg>
-			</label>
+			</button>
 		</div>
 		<div class="flex-1">
 			<span class="text-xl text-primary">Culqui IOT</span>

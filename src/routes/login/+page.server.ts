@@ -1,5 +1,5 @@
 import { auth } from '$lib/server/lucia';
-import { invalid, redirect, type Actions } from '@sveltejs/kit';
+import { invalid, type Actions } from '@sveltejs/kit';
 
 export const actions: Actions = {
 	default: async ({ request, locals }) => {
@@ -22,7 +22,7 @@ export const actions: Actions = {
 		} catch (e) {
 			const err = e as Error;
 			if (
-				err.message === 'AUTH_INVALID_IDENTIFIER_TOKEN' ||
+				err.message === 'AUTH_INVALID_PROVIDER_TOKEN' ||
 				err.message === 'AUTH_INVALID_PASSWORD'
 			) {
 				return invalid(400, { message: 'Invalid email or password' });
@@ -30,7 +30,6 @@ export const actions: Actions = {
 			console.error(e);
 			return invalid(500, { message: 'Internal server error' });
 		}
-		throw redirect(307, '/login');
 	}
 };
 

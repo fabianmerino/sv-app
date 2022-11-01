@@ -17,6 +17,9 @@ const config = {
 			stores: 'src/stores',
 			'stores/*': 'src/stores/*'
 		}
+	},
+	ssr: {
+		noExternal: ["@lucia-auth/sveltekit"]
 	}
 };
 

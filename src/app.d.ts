@@ -18,7 +18,7 @@ declare module '$env/static/private' {
 	export const MONGODB_URI: string;
 }
 
-/// <reference types="lucia-sveltekit" />
+/// <reference types="lucia-auth" />
 declare namespace Lucia {
 	type Auth = import('$lib/server/lucia').Auth;
 	type UserAttributes = {

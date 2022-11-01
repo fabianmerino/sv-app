@@ -3,10 +3,10 @@ import { invalid, redirect, type Actions } from '@sveltejs/kit';
 
 export const actions: Actions = {
 	default: async ({ request, locals }) => {
-		const body = await request.formData();
-		const name = body.get('name') as string;
-		const email = body.get('email') as string;
-		const password = body.get('password') as string;
+		const form = await request.formData();
+		const name = form.get('name') as string;
+		const email = form.get('email') as string;
+		const password = form.get('password') as string;
 		if (!name || !email || !password) {
 			return { errors: { message: 'Invalid name, email or password' } };
 		}
@@ -24,7 +24,7 @@ export const actions: Actions = {
 		} catch (e) {
 			const error = e as Error;
 			if (
-				error.message === 'AUTH_DUPLICATE_IDENTIFIER_TOKEN' ||
+				error.message === 'AUTH_DUPLICATE_PROVIDER_ID' ||
 				error.message === 'AUTH_DUPLICATE_USER_DATA'
 			) {
 				return invalid(400, { message: 'Invalid input' });

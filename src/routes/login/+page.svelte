@@ -8,7 +8,7 @@
 </script>
 
 <svelte:head>
-	<title>Login</title>
+	<title>Login · Culqui</title>
 </svelte:head>
 
 <div class="flex flex-col lg:flex-row items-center justify-center min-h-screen">
@@ -17,14 +17,14 @@
 			<form
 				method="post"
 				class="card-body gap-4"
-				use:enhance={() => {
-					return async ({ result, update }) => {
-						if (result.type === 'redirect') {
-							window.location.href = result.location; // invalidateAll() + goto() will not work
-							return;
-						}
-						applyAction(result);
-					};
+				use:enhance={({ data, cancel }) => {
+					form = {};
+					const email = data.get('email')?.toString() || '';
+					const password = data.get('password')?.toString() || '';
+					if (!email || !password) {
+						form.message = 'Invalid input';
+						cancel();
+					}
 				}}
 			>
 				<LogoCulquiComplete
