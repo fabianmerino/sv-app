@@ -1,22 +1,33 @@
 import { auth } from '$lib/server/lucia';
-import { invalid, redirect, type Actions } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
+import { validateEmail } from 'utils/helpers';
+import type { PageServerLoad, Actions } from './$types';
+
+// If the user exists, redirect authenticated users to the profile page.
+export const load: PageServerLoad = async ({ locals }) => {
+	const session = await locals.validate();
+	if (session) throw redirect(302, '/');
+};
 
 export const actions: Actions = {
 	default: async ({ request, locals }) => {
 		const form = await request.formData();
-		const name = form.get('name') as string;
-		const email = form.get('email') as string;
+		const username = form.get('email') as string;
 		const password = form.get('password') as string;
-		if (!name || !email || !password) {
-			return { errors: { message: 'Invalid name, email or password' } };
+		if (
+			!username ||
+			!password ||
+			typeof username !== 'string' ||
+			typeof password !== 'string' ||
+			!validateEmail(username)
+		) {
+			return fail(400, { message: 'Invalid params' });
 		}
 		try {
-			const user = await auth.createUser('email', email, {
+			const user = await auth.createUser('username', username, {
 				password,
 				attributes: {
-					name,
-					email,
-					username: email
+					username
 				}
 			});
 			const session = await auth.createSession(user.userId);
@@ -27,11 +38,11 @@ export const actions: Actions = {
 				error.message === 'AUTH_DUPLICATE_PROVIDER_ID' ||
 				error.message === 'AUTH_DUPLICATE_USER_DATA'
 			) {
-				return invalid(400, { message: 'Invalid input' });
+				return fail(400, { message: 'Invalid input' });
 			}
+			console.log(error);
 
-			return invalid(500, { message: 'Unknown error occurred' });
+			return fail(500, { message: 'Unknown error occurred' });
 		}
-		throw redirect(303, '/login');
 	}
 };

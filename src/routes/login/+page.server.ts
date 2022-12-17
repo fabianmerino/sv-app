@@ -1,43 +1,39 @@
 import { auth } from '$lib/server/lucia';
-import { invalid, type Actions } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
+import { validateEmail } from 'utils/helpers';
+import type { PageServerLoad, Actions } from './$types';
+
+// If the user exists, redirect authenticated users to the profile page.
+export const load: PageServerLoad = async ({ locals }) => {
+	const session = await locals.validate();
+	if (session) throw redirect(302, '/');
+};
 
 export const actions: Actions = {
 	default: async ({ request, locals }) => {
 		const form = await request.formData();
-		const email = form.get('email');
+		const username = form.get('username');
 		const password = form.get('password');
 		if (
-			!email ||
+			!username ||
 			!password ||
-			typeof email !== 'string' ||
+			typeof username !== 'string' ||
 			typeof password !== 'string' ||
-			!validateEmail(email)
+			!validateEmail(username)
 		) {
-			return invalid(400, { message: 'Invalid email or password' });
+			return fail(400, { message: 'Invalid email or password' });
 		}
 		try {
-			const user = await auth.authenticateUser('email', email, password);
+			const user = await auth.authenticateUser('username', username, password);
 			const session = await auth.createSession(user.userId);
 			locals.setSession(session);
 		} catch (e) {
 			const err = e as Error;
-			if (
-				err.message === 'AUTH_INVALID_PROVIDER_TOKEN' ||
-				err.message === 'AUTH_INVALID_PASSWORD'
-			) {
-				return invalid(400, { message: 'Invalid email or password' });
+			if (err.message === 'AUTH_INVALID_PROVIDER_ID' || err.message === 'AUTH_INVALID_PASSWORD') {
+				return fail(400, { message: 'Invalid email or password' });
 			}
-			console.error(e);
-			return invalid(500, { message: 'Internal server error' });
+			console.error(err);
+			return fail(500, { message: 'Internal server error' });
 		}
 	}
 };
-
-// Regex to validate email addresses
-const EMAIL_REGEX = new RegExp(
-	'^(([^<>()[\\]\\.,;:\\s@"]+(\\.[^<>()[\\]\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$'
-);
-
-function validateEmail(email: string) {
-	return EMAIL_REGEX.test(email);
-}

@@ -192,7 +192,7 @@
 </svelte:head>
 
 <main class="p-4 rounded-lg">
-	<div class="w-full h-40">
+	<div class="w-full h-96">
 		<Chart {options} renderer="svg" theme="dark" />
 	</div>
 </main>

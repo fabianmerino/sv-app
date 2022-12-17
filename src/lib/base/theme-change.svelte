@@ -5,10 +5,12 @@
 	onMount(() => {
 		themeChange(false);
 	});
+	let classes: string;
+	export { classes as class };
 </script>
 
 <!-- <div> -->
-<label class="btn btn-circle swap swap-rotate btn-ghost {$$props.class}">
+<label class="btn btn-circle swap swap-rotate btn-ghost {classes}">
 	<input type="checkbox" data-toggle-theme="light" />
 
 	<svg

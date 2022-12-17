@@ -11,7 +11,7 @@
 </svelte:head>
 
 <div class="flex flex-col items-center justify-center h-screen">
-	<div class="card w-96 bg-base-100 shadow-xl">
+	<div class="card w-96 bg-base-100 shadow-xl card-bordered">
 		<form
 			method="post"
 			class="card-body gap-4"
@@ -35,17 +35,6 @@
 			<h2 class="card-title">Registrar nuevo usuario</h2>
 			<div class="form-control w-full max-w-xs">
 				<label for="email" class="label">
-					<span class="label-text">Nombre</span>
-				</label>
-				<input
-					type="text"
-					name="name"
-					placeholder="Ingrese su nombre"
-					class="input input-bordered w-full max-w-xs"
-				/>
-			</div>
-			<div class="form-control w-full max-w-xs">
-				<label for="email" class="label">
 					<span class="label-text">Email</span>
 				</label>
 				<input
@@ -66,11 +55,29 @@
 					class="input input-bordered w-full max-w-xs"
 				/>
 			</div>
-			<div class="card-actions">
-				<button type="submit" class="btn btn-primary w-full max-w-xs" disabled={!!form?.message}>
-					Ingresar
-				</button>
+			<div class="form-control mt-6">
+				<button type="submit" class="btn btn-primary w-full max-w-xs"> Ingresar </button>
 			</div>
 		</form>
 	</div>
+	{#if form?.message}
+		<div class="toast toast-center min-w-max">
+			<div class="alert alert-error">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="stroke-current flex-shrink-0 h-6 w-6"
+					fill="none"
+					viewBox="0 0 24 24"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+					/>
+				</svg>
+				<span>{form.message}</span>
+			</div>
+		</div>
+	{/if}
 </div>

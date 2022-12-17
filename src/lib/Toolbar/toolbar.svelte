@@ -1,14 +1,11 @@
 <script>
 	import ThemeChange from '$lib/base/theme-change.svelte';
 	import { toggleSidebarMini } from 'stores/views';
-	import { signOut, getUser } from '@lucia-auth/sveltekit/client';
+	import { signOut } from '@lucia-auth/sveltekit/client';
 	import { invalidateAll } from '$app/navigation';
-
-	const user = getUser();
 
 	const logout = async () => {
 		try {
-			console.log($user);
 			await signOut();
 			invalidateAll();
 		} catch (err) {

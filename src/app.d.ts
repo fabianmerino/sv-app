@@ -5,9 +5,9 @@
 // and what to do when importing types
 declare namespace App {
 	interface Locals {
-		getSession: import('lucia-sveltekit/types').GetSession;
-		setSession: import('lucia-sveltekit/types').SetSession;
-		clearSession: import('lucia-sveltekit/types').ClearSession;
+		getSession: import('@lucia-auth/sveltekit').GetSession;
+		setSession: import('@lucia-auth/sveltekit').SetSession;
+		clearSession: import('@lucia-auth/sveltekit').ClearSession;
 	}
 	// interface PageData {}
 	// interface Platform {}
@@ -22,8 +22,6 @@ declare module '$env/static/private' {
 declare namespace Lucia {
 	type Auth = import('$lib/server/lucia').Auth;
 	type UserAttributes = {
-		name: string;
-		email?: string;
 		username: string;
 		createdAt?: Date;
 		updatedAt?: Date;

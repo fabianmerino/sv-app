@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { applyAction, enhance } from '$app/forms';
+	import { enhance } from '$app/forms';
 	import ThemeChange from '$lib/base/theme-change.svelte';
 	import LoginImage from '$lib/Images/login.svelte';
 	import LogoCulquiComplete from '$lib/Icons/logo-culqui-complete.svelte';
@@ -19,9 +19,9 @@
 				class="card-body gap-4"
 				use:enhance={({ data, cancel }) => {
 					form = {};
-					const email = data.get('email')?.toString() || '';
+					const username = data.get('username')?.toString() || '';
 					const password = data.get('password')?.toString() || '';
-					if (!email || !password) {
+					if (!username || !password) {
 						form.message = 'Invalid input';
 						cancel();
 					}
@@ -31,16 +31,16 @@
 					class="flex justify-center w-full h-max py-4 text-dark-blue dark:text-aqua"
 				/>
 				<div class="form-control w-full">
-					<label for="email" class="label">
+					<label for="username" class="label">
 						<span class="label-text">Email</span>
 					</label>
 					<input
 						type="email"
-						name="email"
+						name="username"
 						placeholder="Ingrese su email"
 						class="input input-bordered w-full"
 					/>
-					<label for="email" class="label">
+					<label for="username" class="label">
 						<span class="label-text text-error">{form?.message || ''}</span>
 					</label>
 				</div>
@@ -69,12 +69,10 @@
 				<div class="form-control">
 					<button type="submit" class="btn btn-primary"> Entrar </button>
 				</div>
-				<div class="card-actions items-center justify-center gap-4">
-					<span>¿Aún no tienes una cuenta?</span>
-					<a href="/register" class="link-primary"> Crear cuenta </a>
-					<ThemeChange class="text-primary" />
-				</div>
 			</form>
+		</div>
+		<div class="absolute top-5 left-5">
+			<ThemeChange class="text-primary" />
 		</div>
 	</div>
 	<LoginImage class="items-center justify-center w-full h-full py-4 lg:flex" />
