@@ -8,6 +8,7 @@ declare namespace App {
 		getSession: import('@lucia-auth/sveltekit').GetSession;
 		setSession: import('@lucia-auth/sveltekit').SetSession;
 		clearSession: import('@lucia-auth/sveltekit').ClearSession;
+		validate: import('@lucia-auth/sveltekit').Validate;
 	}
 	// interface PageData {}
 	// interface Platform {}
