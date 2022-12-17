@@ -1,8 +1,13 @@
+<script lang="ts">
+	let classes = '';
+	export { classes as class };
+</script>
+
 <svg
 	width="63"
 	height="63"
 	viewBox="0 0 63 63"
-	class={$$props.class}
+	class={classes}
 	fill="none"
 	xmlns="http://www.w3.org/2000/svg"
 >

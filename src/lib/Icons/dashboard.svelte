@@ -1,3 +1,8 @@
+<script lang="ts">
+	let classes = '';
+	export { classes as class };
+</script>
+
 <svg
 	width="26"
 	height="26"
@@ -5,7 +10,7 @@
 	fill="none"
 	stroke="currentColor"
 	stroke-width="2"
-	class={$$props.class}
+	class={classes}
 	xmlns="http://www.w3.org/2000/svg"
 >
 	<path

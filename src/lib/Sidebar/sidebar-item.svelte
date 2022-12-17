@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { sidebarMini } from 'stores/views';
 	import { page } from '$app/stores';
+	let classes = '';
+	export { classes as class };
 	export let text = '';
 	export let to = '';
 </script>
 
-<li class={$$props.class}>
+<li class={classes}>
 	<a
 		href={to}
 		class="flex"

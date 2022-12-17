@@ -1,9 +1,14 @@
+<script lang="ts">
+	let classes = '';
+	export { classes as class };
+</script>
+
 <svg
 	width="26"
 	height="25"
 	viewBox="0 0 26 25"
 	fill="none"
-	class={$$props.class}
+	class={classes}
 	stroke="currentColor"
 	stroke-width="2"
 	stroke-linecap="round"
